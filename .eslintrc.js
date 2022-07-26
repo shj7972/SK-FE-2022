@@ -22,5 +22,6 @@ module.exports = {
     'jest/valid-expect': 'error',
     'jest/no-try-expect': 'off', // DEPRECATED
     'jest/no-conditional-expect': 'off',
+    'no-unused-vars': 'off'
   },
 };
