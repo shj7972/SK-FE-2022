@@ -41,13 +41,28 @@ const styled = (styleRules, targetNode) => {
 // 제목 노드를 찾아서 스타일링 하기
 const headlineNode = document.querySelector('.headline');
 
-styled`
-  ${headlineNode}
+// styled`
+//   ${headlineNode}
+//   background: #ff0;
+//   color: #111;
+//   padding: 3rem;
+// `;
+
+// 함수를 내보냅니다.
+// JS 함수는 값이므로 내보낼 수 있다.
+// 모듈 패턴
+// 노출 패턴
+// 내보내진 함수는 클로저입니다.
+// const $styled = function (node) {
+//   return function (styleRules) {
+//     return styled(styleRules, node);
+//   };
+// };
+
+const $styled = (node) => (styleRules) => styled(styleRules, node);
+
+$styled(headlineNode)`
   background: #ff0;
   color: #111;
   padding: 3rem;
 `;
-
-const $styled = () => {
-  // 코드를 작성합니다.
-};
