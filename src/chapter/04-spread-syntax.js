@@ -53,8 +53,9 @@ const setState = (newState) => {
 
   // 깊은 복사
   return {
-    ...state /* { loading: false, error, data } */,
-    ...newState, /* { loading: true, data } */
+    ...state, /* { loading, error, data } */
+    ...newState, /* { loading, data } */
+    // 중첩된 객체(또는 배열) 합성
     data: [
       ...state.data,
       ...newState.data

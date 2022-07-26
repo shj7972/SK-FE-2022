@@ -6,7 +6,7 @@
 
 /* 나머지 매개변수 (집합) -------------------------------------------------------- */
 
-var multiplyCount = function () {
+const multiplyCount = function () {
   var first = arguments[0]; // 첫번째 매개변수
   var rest = [].slice.call(arguments, 1); // 나머지 매개변수
 
@@ -18,3 +18,19 @@ var multiplyCount = function () {
 
   return first;
 };
+
+// const sum = (...args /* 나머지 매개변수 */) => {
+//   let firstItem = args[0];
+//   let restItems = args.slice(1);
+// };
+
+const sum = (firstItem, secondItem, thirdItem, ...restItems) => {
+  console.log('DEBUG →  ~ firstItem', firstItem);
+  console.log('DEBUG →  ~ secondItem', secondItem);
+  console.log('DEBUG →  ~ thirdItem', thirdItem);
+  console.log('DEBUG →  ~ restItems', restItems);
+};
+
+let result = sum(101, 202, 303, 404, 505);
+
+console.log(result);
