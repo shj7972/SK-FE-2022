@@ -12,8 +12,6 @@ var state = Object.freeze({
   ],
 });
 
-console.table(state);
-
 // 객체 속성과 일치하는 변수 선언 후, 속성 값 할당
 var loading = state.loading;
 var error = state.error;

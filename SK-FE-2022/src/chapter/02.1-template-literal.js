@@ -29,21 +29,6 @@ function renderCard(card) {
   );
 }
 
-const drawCard = (card) => {
-  //console.log(card);
-  return (
-    `<div class="card">
-    <img src="${card.image.src}" class="card-img-top" alt="${card.image.alt}" />
-    <div class="card-body">
-      <h5 class="card-title">${card.title}</h5>
-      <p class="card-text">${card.description}</p>
-      <a href="${card.link.herf}" class="btn btn-primary">${card.link.text}</a>      
-    </div>    
-  </div>
-    `
-  )
-}
-
 function removeSpaceString(string) {
   return string.replace(/\n|\s+/g, '');
 }
@@ -63,20 +48,6 @@ const cardInfo = {
   },
 };
 
-//let rendered = removeSpaceString(renderCard(cardInfo));
-let rendered = removeSpaceString(drawCard(cardInfo));
+let rendered = removeSpaceString(renderCard(cardInfo));
 
-//console.log(cardInfo);
 console.log(rendered);
-
-// 원래 문자열으로 표현을 하려면, 더해줘야한다.
-// 하지만 템플릿 리터럴을 쓰면 `` 백틱과 ${}의 조합으로 문자열을 만들 수 있게된다
-let A="안"
-let B="녕"
-let C="하"
-let D="세"
-let E="요"
-let F="."
-
-console.log("저기 가는 아저씨" + " "+A+ " "+B+ " "+C+ " "+D+ " "+E+ " "+F) // es5
-console.log(`저기 가는 형님 ${A} ${B} ${C} ${D} ${E} ${F}`) //es6

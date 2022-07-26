@@ -13,9 +13,3 @@ const truncateText = (text, limit) => {
   limit = defaultArg(limit, 100);
   return `${text.slice(0, limit).trim()}...`;
 };
-
-let desc = `
-기본 매개변수의
-`.trim();
-
-console.log(truncateText(desc));
