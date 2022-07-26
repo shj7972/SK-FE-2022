@@ -6,9 +6,14 @@
 
 /* 배열 전개 ------------------------------------------------------------------- */
 
-var integers = [-1, 0, 32, -101, 24];
-var maxInt = Math.max.apply(Math, [302, 1, 2, 30, -101].concat(integers));
+// ... 연산자 전개, 합성
 
+const integers = [-1, 0, 32, -101, 24];
+const floatings = [0.98, 10.43, 10.4e5];
+// let maxInt = Math.max.apply(Math, [302, 1, 2, 30, -101].concat(integers));
+let maxInt = Math.max(...[302, ...floatings, 1, ...integers, 2, 30, -101])
+
+console.log(maxInt);
 
 /* 객체 전개 ------------------------------------------------------------------- */
 
