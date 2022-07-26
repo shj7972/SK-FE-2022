@@ -9,14 +9,20 @@
 const defaultArg = (value, initialValue) => {
   // Ternaries
   // 아래 코드를 3항 연산 식으로 변경합니다.
-  if (value === null || value === undefined) {
-    return initialValue;
-  } else {
-    return value;
-  }
+  // if (value === null || value === undefined) {
+  //   return initialValue;
+  // } else {
+  //   return value;
+  // }
+
+  // return value === null || value === undefined ? initialValue : value;
+
+  // '', 0, NaN, null, undefined
+  // return value || initialValue;
 
   // Nullish coalescing operator
   // null 병합 연산자를 사용한 식으로 변경합니다.
+  return value ?? initialValue;
 };
 
 const ellipsisText = (text, limit) => {
@@ -30,6 +36,8 @@ let desc = `
   자주 사용되는 조건 식에 대해 정리합니다.
 `.trim();
 
+// console.log(ellipsisText(desc, 0));
+
 // ----------------------------------------------------------------------------------
 // Optional chaning
 // ----------------------------------------------------------------------------------
@@ -40,6 +48,7 @@ const company = Object.freeze({
     lat: 321,
     lng: -39,
   },
+  // getFoundingDate: '2019, 08',
   getLocation() {
     return Object.values(company.location);
   },
@@ -47,22 +56,18 @@ const company = Object.freeze({
 
 let companyName, companyLat;
 
-if ('companyName' in company) {
-  companyName = company.companyName;
-}
+companyName = company?.companyName;
 
 console.log('companyName = ', companyName);
 
-if ('location' in company) {
-  if ('lat' in company.location) companyLat = company.location.lat;
-}
+companyLat = company.location?.lat;
 
 console.log('companyLat = ', companyLat);
 
-if ('getFoundingDate' in company) {
-  if (typeof company.getFoundingDate === 'function') company.getFoundingDate();
-}
+company.getFoundingDate?.();
 
-if ('getLocation' in company) {
-  if (typeof company.getLocation === 'function') company.getLocation();
-}
+let location;
+
+location = company.getLocation?.();
+
+console.log(location);
