@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 /* -------------------------------------------------------------------------- */
 /* ECMAScript NEXT를 사용해 함수를 작성합니다.                                       */
 /* -------------------------------------------------------------------------- */
@@ -21,5 +23,29 @@ const numberWithComma = (n) =>
 //       - 타입 선언할 때 타입이 더 이상 변경되지 않도록 조치
 const fibonacci = n => (n <= 1 ? 1 : fibonacci(n - 1) + fibonacci(n - 2));
 
-console.log(numberWithComma(typeof 17e3));
-console.log(fibonacci(17));
+// console.log(numberWithComma(typeof 17e3));
+// console.log(fibonacci(17));
+
+
+// 일반 함수 식 vs. 화살표 함수 식
+const calcPrice = function() {
+  // 함수 내부에서만 접근 가능한 인자 집합 객체
+  // arguments
+  
+  // 메서드 빌려쓰기 패턴
+  // Function.prototype.call(thisArg, params)
+  const args = Array.prototype.slice.call(arguments);
+
+  return args.reduce(function(total, current) {
+    return total + current
+  }, 0);
+
+  // return priceA + priceB;
+}
+
+console.log(numberWithComma(calcPrice(10000, 10e5, 9000)));
+
+
+const sum = (...args) => args.reduce((total, current) => total + current, 0)
+
+console.log(sum(1000, 10, 100));
