@@ -1,4 +1,5 @@
-// 1. utils 모듈을 "모듈 객체"로 불러옵니다.
+// 1. utils 모듈을 "모듈 객체"로 불러옵니다. (import)
+import * as Utils from '../utils/index.js';
 
 // 2. utils 모듈 중, numberWithComma 함수를 추출합니다.
 

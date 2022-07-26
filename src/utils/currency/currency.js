@@ -1,8 +1,9 @@
-// 1. numberWithComma 모듈을 불러옵니다.
-// 2. currency 모듈을 "이름 내보내기"로 내보냅니다.
+// 1. numberWithComma 모듈을 불러옵니다. (import)
+import numberWithComma from './numberWithComma.js';
+// 2. currency 모듈을 "이름 내보내기(named export)"로 내보냅니다.
 // 3. currencyKR 모듈을 "이름 내보내기"로 내보냅니다.
 
-const currency = (n, symbol = '$', position = 'before') => {
+export const currency = (n, symbol = '$', position = 'before') => {
   n = numberWithComma(n);
 
   switch (position) {
@@ -14,4 +15,9 @@ const currency = (n, symbol = '$', position = 'before') => {
   }
 };
 
-const currencyKR = (n) => currency(n, '원', 'after');
+export const currencyKR = (n) => currency(n, '원', 'after');
+
+// export default {
+//   currency,
+//   currencyKR
+// }
