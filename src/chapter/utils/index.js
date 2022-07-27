@@ -8,3 +8,5 @@ export { default as numberWithComma } from './currency/numberWithComma.js';
 export * from './currency/currency.js';
 
 // export { numberWithComma, currency, currencyKR };
+
+export * from './fetchBooks.js';
