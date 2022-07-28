@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { EmojiOops, PrettyPrintCode } from 'components';
 
 /* -------------------------------------------------------------------------- */
@@ -47,6 +48,9 @@ const ConditionalRendering = () => {
 
 // `api/db.json` 데이터에서 `navigation.items` 데이터를 화면에 출력해보세요.
 const db = require('api/db.json');
+
+window.db = db;
+
 const {
   navigation: { items },
 } = db;
@@ -82,14 +86,25 @@ const ListRedering = () => {
         </ul>
       </nav>
 
-      {/* 객체 리스트 렌더링 */}
+      {/* 객체 리스트 렌더링: { key: value, key: value, ...  } */}
       <dl className="descriptionList">
+        {Object.entries(db).map(([key, value]) => (
+          <Fragment key={key}>
+            <dt>{key}</dt>
+            <dd>
+              {typeof value === 'object' ? (
+                <PrettyPrintCode code={value} />
+              ) : (
+                value
+              )}
+            </dd>
+          </Fragment>
+        ))}
         {/* 웹 표준을 준수해 설명 목록을 화면에 출력해봅니다. */}
         {/* `db` 객체의 "속성", "값" 쌍을 순환하여 리스트 렌더링 해보세요. */}
         {/* 값의 유형이 객체 또는 배열인 경우, 코드가 화면에 출력되도록 설정합니다. */}
         {/* `isArray`, `isObject` 유틸리티 함수를 만들어 활용하세요. */}
         {/* 코드를 화면에 출력할 때는 <PrettyPrintCode /> 컴포넌트를 활용합니다. (`code` 속성) */}
-        <PrettyPrintCode />
       </dl>
     </div>
   );
