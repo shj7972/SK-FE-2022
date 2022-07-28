@@ -1,13 +1,20 @@
 import { getPublicAsset } from 'utils';
+import { A11yHidden } from 'components';
 
 function StatelessComponent(props) {
-
   return (
-    <div style={{padding: '40px 60px', fontSize: '1.2rem'}}>
+    <div style={{ padding: '40px 60px', fontSize: '1.2rem' }}>
+      <A11yHidden
+        as="a"
+        href="#a11y-hidden"
+        className="positionFixed"
+        style={{ fontSize: '4rem' }}
+        focusable
+      >
+        Go to A11Y Hidden Component
+      </A11yHidden>
 
-      <a href="#a11y-hidden">[Skip to content Link] Go to A11Y Hidden Component</a>
-
-      <h2> stateless function component </h2>
+      <A11yHidden as="h2"> stateless function component </A11yHidden>
       <a href="https://reactjs.org">Learn React</a>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro cum
@@ -16,9 +23,12 @@ function StatelessComponent(props) {
         ipsam animi necessitatibus, quod quis.
       </p>
 
-      <figure className="banner" style={{margin: 0}}>
+      <figure className="banner" style={{ margin: 0 }}>
         <img src={getPublicAsset('cover.jpg')} alt="" height={400} />
-        <figcaption>선한 영향력, 플라스틱으로부터 바다를 지키는 능력 우리 모두를 생각하는 '선한 영향력'이 더 큰 영향력이 되도록...</figcaption>
+        <A11yHidden as="figcaption">
+          선한 영향력, 플라스틱으로부터 바다를 지키는 능력 우리 모두를 생각하는
+          '선한 영향력'이 더 큰 영향력이 되도록...
+        </A11yHidden>
       </figure>
 
       <p>
@@ -27,17 +37,20 @@ function StatelessComponent(props) {
         est sapiente eveniet rerum asperiores, magnam ratione? Deserunt
         doloremque qui quam velit!
       </p>
-      <h3 id="a11y-hidden"><abbr title="Accessibility">A11Y</abbr> Hidden Component</h3>
+      <A11yHidden as="h3" id="a11y-hidden">
+        <abbr title="Accessibility">A11Y</abbr> Hidden Component
+      </A11yHidden>
       <p>
         Dolorem accusamus aperiam molestias architecto obcaecati earum neque
         ducimus dolore hic, esse ut recusandae fugit quod enim, quae rem sint
-        ipsam amet. At adipisci atque aliquam similique, expedita nulla in.
+        ipsam <a href="#link-a">amet</a>. At adipisci atque aliquam similique,
+        expedita nulla in.
       </p>
       <p>
         Minima optio, natus distinctio odit, deleniti assumenda fugit id non
         temporibus earum dicta asperiores commodi. Aspernatur consequuntur quas
-        at, accusamus in enim sunt tenetur voluptas earum facilis dolores nobis
-        amet.
+        at, <a href="#link-z">accusamus in enim sunt tenetur</a> voluptas earum
+        facilis dolores nobis amet.
       </p>
       <p>
         Numquam natus voluptate saepe est omnis rem quidem dicta explicabo nobis
