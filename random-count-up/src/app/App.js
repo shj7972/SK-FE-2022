@@ -20,7 +20,7 @@ function App() {
           />
           <Route
             path="/stateful-class-component"
-            element={<StatefulComponent />}
+            element={<StatefulComponent name="preact" />}
           />
         </Routes>
       </Router>

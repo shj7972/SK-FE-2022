@@ -1,3 +1,4 @@
+export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as Header } from './Header/Header';
 export * from './PrettyPrintCode/PrettyPrintCode';
 export * from './A11yHidden/A11yHidden';
