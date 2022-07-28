@@ -2,7 +2,7 @@
 import logoPath from 'assets/logo.svg';
 import { getPublicAsset } from 'utils';
 
-export function Header(props) {
+export default function Header(props) {
   return (
     <header className="App-header">
       <img
