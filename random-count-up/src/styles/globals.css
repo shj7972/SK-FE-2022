@@ -2,19 +2,12 @@
 @import './initializer.css';
 @import './a11y.css';
 
-.positionFixed {
-  position: fixed !important;
-  top: 0;
-  right: 0;
-  border: 1px solid currentColor;
-  padding: 20px;
-  background: #fff;
-}
+/* -------------------------------------------------------------------------- */
 
 body {
-  min-height: 100vh;
   margin: 0;
-  background: #fefefe;
+  background: #fff;
+  font: 300 1rem/1.5 'Spoqa Hans Sans', sans-serif;
 }
 
 .container {
