@@ -1,11 +1,11 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
-import './styles/globals.css';
+import 'styles/globals.css';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import App from './app/App';
+import App from 'app/App';
 
 render(
   <StrictMode>
