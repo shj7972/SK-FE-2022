@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import JsxInAction from 'pages/JsxInAction';
 import StatelessComponent from 'pages/SFC';
+import StatefulComponent from 'pages/Stateful';
 import RandomCountUp from 'pages/RandomCountUp/RandomCountUp';
 
 function App() {
@@ -13,7 +14,14 @@ function App() {
           <Route path="/" element={<div children="this is home page" />} />
           <Route path="/jsx-in-action" element={<JsxInAction />} />
           <Route path="/random-count-up" element={<RandomCountUp />} />
-          <Route path="/stateless-function-component" element={<StatelessComponent />} />
+          <Route
+            path="/stateless-function-component"
+            element={<StatelessComponent />}
+          />
+          <Route
+            path="/stateful-class-component"
+            element={<StatefulComponent />}
+          />
         </Routes>
       </Router>
     </div>
