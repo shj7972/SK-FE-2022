@@ -5,20 +5,30 @@
 별도로 빌드 개발 환경에 대한 공부 없이 바로 React 개발이 가능합니다.  
 (다만, 사용자 정의 확장은 기본적으로는 Lock 입니다.)
 
-```
-선한 영향력
-= 플라스틱으로부터 바다를 지키는 능력
-우리 모두를 생각하는 '선한 영향력'이 더 큰 영향력이 되도록 SK도 노력하겠습니다
-모두가 함께, 행복하도록 OK! SK
-```
+## 학습 주제
 
-```
-세상.행복하길
-지구가 더 깨끗해지길
-사회는 함께 더 따뜻해지길
-기업은 신뢰와 공감을 통해 더 든든해지길
-SK가 ESG로 만들어가는 길
-지구도 사회도 기업도
-지속 가능한 행복으로 가는 길입니다
-ESG로 세상.행복하도록
-```
+1. 단방향 데이터 흐름 (one-way data flow)
+1. Props 드릴링(drilling)
+1. 상태 끌어올리기(lift state up)
+1. Props 타입 검사(type validation)
+1. React 훅(Hooks)
+    - 등장 배경
+    - 사용 규칙
+    - useState 훅
+    - useEffect 훅
+    - useRef 훅
+    - useLayoutEffect 훅
+    - useCallback / useMemo 훅
+1. 고차 컴포넌트(HOC)
+1. React 컨텍스트(Context)
+    - 컨텍스트 생성
+    - 프로바이더
+    - useContext 훅
+    - 커스텀(custom) 훅
+    - useReducer 훅
+1. 스타일 컴포넌트
+    - styled-components
+    - emotion
+1. CRA 사용자 정의 구성
+    - react-app-rewired
+    - custom-cra
