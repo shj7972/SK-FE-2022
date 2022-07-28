@@ -4,11 +4,12 @@ import 'react-app-polyfill/stable';
 import 'styles/globals.css';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
-import App from 'app/App';
+// import App from 'app/App';
+import { LearnApp } from './learn/jsxInAction';
 
 render(
   <StrictMode>
-    <App />
+    <LearnApp />
   </StrictMode>,
   document.getElementById('root')
 );
