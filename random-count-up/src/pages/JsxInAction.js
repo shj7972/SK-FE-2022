@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
+
 import { Fragment } from 'react';
+import classNames from 'classnames';
 import { EmojiOops, PrettyPrintCode } from 'components';
 
 /* -------------------------------------------------------------------------- */
@@ -69,9 +72,10 @@ const ListItem = ({ item }) => (
   </li>
 );
 
-const ListRedering = () => {
+const ListRedering = ({ className }) => {
+  // <div className={`container ${className ?? ''}`.trim()}>
   return (
-    <div className="container">
+    <div className={classNames('container', className)}>
       <h1 className="headline">React 리스트 렌더링 (배열)</h1>
 
       {/* 배열 리스트 렌더링 */}
@@ -88,8 +92,8 @@ const ListRedering = () => {
 
       {/* 객체 리스트 렌더링: { key: value, key: value, ...  } */}
       <dl className="descriptionList">
-        {Object.entries(db).map(([key, value]) => (
-          <Fragment key={key}>
+        {Object.entries(db).map(([key, value], index) => (
+          <Fragment key={index}>
             <dt>{key}</dt>
             <dd>
               {typeof value === 'object' ? (
@@ -112,4 +116,11 @@ const ListRedering = () => {
 
 /* -------------------------------------------------------------------------- */
 
-export const LearnApp = () => <ListRedering />;
+export default function JsxInAction() {
+  return (
+    <>
+      <ConditionalRendering />
+      <ListRedering />
+    </>
+  );
+}

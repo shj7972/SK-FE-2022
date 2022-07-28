@@ -1,5 +1,6 @@
 @import-normalize;
 @import './initializer.css';
+@import './a11y.css';
 
 body {
   display: flex;
