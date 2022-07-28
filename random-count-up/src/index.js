@@ -1,25 +1,26 @@
-import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
-
-import 'styles/globals.css';
 import { StrictMode } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import 'styles/globals.css';
 import App from 'app/App';
 
-render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-  </StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 );
 
-const { NODE_ENV } = process.env;
+/* 배포 시 처리 ------------------------------------------------------------------ */
 
-// 배포
-// dynamic import('path') => Promise
-// babel-loader: experiments.topLevelAwait 활성
-if (NODE_ENV === 'production') {
-  import('./reportWebVitals')
-    .then(({ reportWebVitals }) => reportWebVitals(console.log))
-    .catch((error) => console.error(error.message));
+// 동적 호출 (dynamic import('path') => Promise)
+// 오류 메시지: babel-loader: experiments.topLevelAwait 활성
+// 해결 방법: Babel 플러그인 babel-plugin-syntax-top-level-await 활용
+// 참고: https://babeljs.io/docs/en/babel-plugin-syntax-top-level-await
+if (process.env.NODE_ENV === 'production') {
+  try {
+    const { reportWebVitals } = await import('./reportWebVitals');
+    reportWebVitals(console.log);
+  } catch (error) {
+    console.error(error.message);
+  }
 }
