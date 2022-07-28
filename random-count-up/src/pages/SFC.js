@@ -1,9 +1,8 @@
-import { getPublicAsset } from 'utils';
-import { A11yHidden } from 'components';
+import { A11yHidden, Banner } from 'components';
 
 function StatelessComponent(props) {
   return (
-    <div style={{ padding: '40px 60px', fontSize: '1.2rem' }}>
+    <div lang="en" style={{ padding: '40px 60px', fontSize: '1.2rem' }}>
       <A11yHidden
         as="a"
         href="#a11y-hidden"
@@ -23,13 +22,28 @@ function StatelessComponent(props) {
         ipsam animi necessitatibus, quod quis.
       </p>
 
-      <figure className="banner" style={{ margin: 0 }}>
-        <img src={getPublicAsset('cover.jpg')} alt="" height={400} />
-        <A11yHidden as="figcaption">
-          선한 영향력, 플라스틱으로부터 바다를 지키는 능력 우리 모두를 생각하는
-          '선한 영향력'이 더 큰 영향력이 되도록...
-        </A11yHidden>
-      </figure>
+      <div style={{ display: 'flex', gap: 10 }}>
+        <Banner
+          url="cover.jpg"
+          width={374}
+          height={800}
+          style={{ border: '20px solid #f5e74f' }}
+        >
+          선한 영향력 = 플라스틱으로부터 바다를 지키는 능력 우리 모두를 생각하는
+          '선한 영향력'이 더 큰 영향력이 되도록 SK도 노력하겠습니다. 모두가
+          함께, 행복하도록 OK! SK
+        </Banner>
+        <Banner
+          url="cover2.jpg"
+          width={400}
+          height={800}
+          style={{ border: '20px solid #3838d4' }}
+        >
+          세상.행복하길 지구가 더 깨끗해지길 사회는 함께 더 따뜻해지길 기업은
+          신뢰와 공감을 통해 더 든든해지길 SK가 ESG로 만들어가는 길 지구도
+          사회도 기업도 지속 가능한 행복으로 가는 길입니다 ESG로 세상.행복하도록
+        </Banner>
+      </div>
 
       <p>
         Nam officia quis quod, consequatur accusamus earum temporibus quidem
