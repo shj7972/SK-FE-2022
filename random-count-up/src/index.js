@@ -13,10 +13,12 @@ render(
   document.getElementById('root')
 );
 
+const { NODE_ENV } = process.env;
+
 // 배포
 // dynamic import('path') => Promise
-// experiments.topLevelAwait 활성
-if (process.env.NODE_ENV === 'production') {
+// babel-loader: experiments.topLevelAwait 활성
+if (NODE_ENV === 'production') {
   import('./reportWebVitals')
     .then(({ reportWebVitals }) => reportWebVitals(console.log))
     .catch((error) => console.error(error.message));
