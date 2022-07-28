@@ -1,9 +1,10 @@
 function StatelessComponent(props) {
   return (
-    <div>
+    <div style={{padding: '40px 60px', fontSize: '1.2rem'}}>
       <h2>
-        <a href="https://reactjs.org">stateless function component</a>
+        stateless function component
       </h2>
+      <a href="https://reactjs.org">Learn React</a>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro cum
         similique molestiae deserunt doloribus veniam, voluptatum at dignissimos
