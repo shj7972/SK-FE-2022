@@ -5,13 +5,13 @@ import { EmojiOops, PrettyPrintCode } from 'components';
 let error = null;
 
 // 오류 메시지를 포함한 객체를 추가해보세요.
-error = {
-  name: 'UNKNOWN_ERROR',
-  __message: '알 수 없는 오류가 발생했습니다.',
-  log() {
-    console.log(`%c${this.__message}`, 'color: red; font-weight: 900;');
-  },
-};
+// error = {
+//   name: 'UNKNOWN_ERROR',
+//   __message: '알 수 없는 오류가 발생했습니다.',
+//   log() {
+//     console.log(`%c${this.__message}`, 'color: red; font-weight: 900;');
+//   },
+// };
 
 /* -------------------------------------------------------------------------- */
 
@@ -46,7 +46,24 @@ const ConditionalRendering = () => {
 /* -------------------------------------------------------------------------- */
 
 // `api/db.json` 데이터에서 `navigation.items` 데이터를 화면에 출력해보세요.
+const db = require('api/db.json');
+const {
+  navigation: { items },
+} = db;
+
 // `list` 매개 변수를 순환해 아이템 리스트를 반환하는 `renderList` 함수를 만들어 활용해봅니다.
+const renderList = (list) =>
+  list.map((item, index) => (
+    <li key={index}>
+      <a href={item.link}>{item.text}</a>
+    </li>
+  ));
+
+const ListItem = ({ item }) => (
+  <li>
+    <a href={item.link}>{item.text}</a>
+  </li>
+);
 
 const ListRedering = () => {
   return (
@@ -57,8 +74,11 @@ const ListRedering = () => {
       <nav className="globalNavigation">
         {/* 웹 표준을 준수해 비순차 목록을 화면에 출력해봅니다. */}
         {/* renderList(list) 함수를 실행해 리스트 렌더링 처리해봅니다. */}
+        {/* <ul>{renderList(items)}</ul> */}
         <ul>
-          <li>리스트를 렌더링 해보세요.</li>
+          {items.map((item) => (
+            <ListItem key={item.link} item={item} />
+          ))}
         </ul>
       </nav>
 
@@ -77,6 +97,4 @@ const ListRedering = () => {
 
 /* -------------------------------------------------------------------------- */
 
-export function LearnApp() {
-  return <ConditionalRendering />;
-}
+export const LearnApp = () => <ListRedering />;
