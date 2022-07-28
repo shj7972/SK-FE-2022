@@ -4,7 +4,6 @@ import 'react-app-polyfill/stable';
 import 'styles/globals.css';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
-import reportWebVitals from './reportWebVitals';
 import App from 'app/App';
 
 render(
@@ -15,6 +14,10 @@ render(
 );
 
 // 배포
+// dynamic import('path') => Promise
+// experiments.topLevelAwait 활성
 if (process.env.NODE_ENV === 'production') {
-  reportWebVitals(console.log);
+  import('./reportWebVitals')
+    .then(({ reportWebVitals }) => reportWebVitals(console.log))
+    .catch((error) => console.error(error.message));
 }

@@ -1,4 +1,7 @@
 {
+  "typeAcquisition": {
+    "enable": false
+  },
   "compilerOptions": {
     "baseUrl": "./src"
   }
