@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import { InteractHeadline, A11yHidden } from 'components';
+import { InteractHeadline, A11yHidden, Demo } from 'components';
 import { arrayOf, oneOfType, number, string } from 'prop-types';
 import { UserType } from 'types';
+/* -------------------------------------------------------------------------- */
 
 class StatefulComponent extends Component {
   static defaultProps = {
@@ -105,6 +106,9 @@ StatefulComponent.Child = class extends Component {
             <li>사용자가 없습니다.</li>
           )}
         </ul>
+
+        {/* <Demo.Stateless /> */}
+        {/* <Demo.AnotherStateless /> */}
       </>
     );
   }
