@@ -3,75 +3,54 @@ import { InteractHeadline, A11yHidden, Demo } from 'components';
 import { arrayOf, oneOfType, number, string } from 'prop-types';
 import { UserType } from 'types';
 
-function StatefulComponent({ name }) {
+function StatefulComponent() {
   // const { isShowChild, containerStyle, color, background, theme, members } = this.state;
 
   // 함수 컴포넌트가 상태를 관리하는 방법
-  const [state, setState] = useState({
-    isShowChild: true,
-    nickname: `__${name}__`,
-    theme: 'dark',
-    background: '#000',
-    color: '#fff',
-    containerStyle: {
-      padding: 40,
-    },
-    members: [
-      { id: 'user-1', name: '해오랑', age: 23 },
-      { id: 'user-2', name: '김이박', age: 45 },
-      { id: 'user-3', name: '박현식', age: 39 },
-      { id: 'user-4', name: '최연지', age: 28 },
-      // new user
-      { id: 'user-5', name: '박사랑', age: 19 },
-    ],
-  });
+  // useState는 단 하나의 상태만 관리하는 것이 좋다.
+  const [isShowChild, setIsShowChild] = useState(true);
+  const [theme, setTheme] = useState('dark');
+  const [background, setBackground] = useState('#000');
+  const [color, setColor] = useState('#fff');
+  const [members] = useState([
+    { id: 'user-1', name: '해오랑', age: 23 },
+    { id: 'user-2', name: '김이박', age: 45 },
+    { id: 'user-3', name: '박현식', age: 39 },
+    { id: 'user-4', name: '최연지', age: 28 },
+    { id: 'user-5', name: '박사랑', age: 19 },
+  ]);
 
   const handleChangeTheme = () => {
-    setState(({ isShowChild }) => ({
-      isShowChild: !isShowChild,
-    }));
+    setTheme(theme === 'light' ? 'dark' : 'light');
+    setColor(color.includes('000') ? '#fff' : '#000');
+    setBackground(background.includes('000') ? '#fff' : '#000');
   };
 
   const handleToggleChild = () => {
-    setState(({ theme, color, background }) => ({
-      color: color.includes('000') ? '#fff' : '#000',
-      background: background.includes('000') ? '#fff' : '#000',
-      theme: theme === 'light' ? 'dark' : 'light',
-    }));
+    setIsShowChild(!isShowChild);
   };
 
   return (
     <div
       id="stateful-component"
       style={{
-        color: state.color,
-        background: state.background,
-        ...state.containerStyle,
+        color,
+        background,
+        padding: 40,
       }}
     >
       <InteractHeadline
-        theme={state.theme}
+        theme={theme}
         onChangeTheme={handleChangeTheme}
         onToggleChild={handleToggleChild}
       />
 
-      {state.isShowChild && (
-        <StatefulComponent.Child
-          numbers={[20, 3034, '22']}
-          users={state.members}
-        />
+      {isShowChild && (
+        <StatefulComponent.Child numbers={[20, 3034, '22']} users={members} />
       )}
     </div>
   );
 }
-
-StatefulComponent.defaultProps = {
-  name: 'stateful',
-};
-
-StatefulComponent.propTypes = {
-  name: string,
-};
 
 StatefulComponent.Child = class extends Component {
   clearId = null;
