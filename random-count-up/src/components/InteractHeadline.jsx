@@ -1,8 +1,15 @@
 import { Component } from 'react';
 import { Button } from 'components';
+import { oneOf, func } from 'prop-types';
 
 // stateless → stateful
 export class InteractHeadline extends Component {
+  static propTypes = {
+    theme: oneOf(['light', 'dark']).isRequired,
+    onChangeTheme: func,
+    onToggleChild: func,
+  };
+
   state = {
     headline: 'Stateless Component',
     buttonInfo: {
@@ -35,8 +42,8 @@ export class InteractHeadline extends Component {
 
   handleClick = () => {
     // 부모의 부모에서 받은 props (메서드)
-    this.props.onChangeTheme();
-    this.props.onToggleChild();
+    this.props.onChangeTheme?.();
+    this.props.onToggleChild?.();
     // 부모의 메서드
     this.handleChangeHeadline();
   };

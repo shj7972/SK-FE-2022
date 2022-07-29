@@ -1,5 +1,5 @@
 import styles from './Button.module.scss';
-import { string } from 'utils/PropTypes';
+import { node, oneOf } from 'prop-types';
 
 export const Button = ({ type, children, ...restProps }) => (
   <button type={type} className={styles.container} {...restProps}>
@@ -12,6 +12,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  type: string,
-  children: string,
+  type: oneOf(['submit', 'reset', 'button']),
+  // children: oneOfType([element, string]).isRequired,
+  children: node.isRequired,
 };

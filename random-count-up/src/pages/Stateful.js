@@ -1,9 +1,13 @@
 import { Component } from 'react';
-import { InteractHeadline } from 'components';
+import { InteractHeadline, A11yHidden } from 'components';
+import { arrayOf, oneOfType, number, string } from 'prop-types';
 
 class StatefulComponent extends Component {
   static defaultProps = {
     name: 'stateful',
+  };
+  static propTypes = {
+    name: string,
   };
 
   state = {
@@ -36,7 +40,7 @@ class StatefulComponent extends Component {
           onToggleChild={this.handleToggleChild}
         />
 
-        {isShowChild && <StatefulComponent.Child />}
+        {isShowChild && <StatefulComponent.Child numbers={[20, 3034, '22']} />}
       </div>
     );
   }
@@ -60,20 +64,33 @@ StatefulComponent.Child = class extends Component {
   clearId = null;
 
   static displayName = 'StatefulChild';
+  static propTypes = {
+    numbers: arrayOf(oneOfType([number, string])),
+  };
 
   render() {
-    return <div>Child</div>;
+    const { numbers } = this.props;
+    return (
+      <>
+        <A11yHidden as="h3">숫자 목록</A11yHidden>
+        <ul>
+          {numbers && numbers.length > 0 ? (
+            numbers.map((number, index) => <li key={index}>{number}</li>)
+          ) : (
+            <li>출력할 숫자가 없습니다.</li>
+          )}
+        </ul>
+      </>
+    );
   }
 
   /* -------------------------------------------------------------------------- */
 
   componentDidMount() {
-    console.log('event subsription');
-    this.clearId = setInterval(() => console.log('this is child'), 1000);
+    // this.clearId = setInterval(() => console.log('this is child'), 1000);
   }
   componentWillUnmount() {
-    console.log('event unsubsription');
-    clearInterval(this.clearId);
+    // clearInterval(this.clearId);
   }
 };
 
