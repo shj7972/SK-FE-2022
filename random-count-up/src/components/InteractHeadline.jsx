@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Button } from 'components';
 
 // stateless → stateful
 export class InteractHeadline extends Component {
@@ -16,6 +17,12 @@ export class InteractHeadline extends Component {
     return (
       <>
         <h2>{headline}</h2>
+        <Button
+          type={10293}
+          lang="en"
+          data-theme={this.props.theme}
+          onClick={() => console.log('clicked button')}
+        ></Button>
         <InteractHeadline.Button
           theme={this.props.theme}
           onClick={this.handleClick}
