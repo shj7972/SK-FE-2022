@@ -1,15 +1,25 @@
-import { useState, Component } from 'react';
-import { InteractHeadline, A11yHidden, Demo } from 'components';
+import { Component } from 'react';
+import {
+  InteractHeadline,
+  A11yHidden,
+  Stateless,
+  AnotherStateless,
+} from 'components';
 import { arrayOf, oneOfType, number, string } from 'prop-types';
 import { UserType } from 'types';
+/* -------------------------------------------------------------------------- */
 
-function StatefulComponent({ name }) {
-  // const { isShowChild, containerStyle, color, background, theme, members } = this.state;
+class StatefulComponent extends Component {
+  static defaultProps = {
+    name: 'stateful',
+  };
+  static propTypes = {
+    name: string,
+  };
 
-  // 함수 컴포넌트가 상태를 관리하는 방법
-  const [state, setState] = useState({
+  state = {
     isShowChild: true,
-    nickname: `__${name}__`,
+    nickname: `__${this.props.name}__`,
     theme: 'dark',
     background: '#000',
     color: '#fff',
@@ -24,54 +34,51 @@ function StatefulComponent({ name }) {
       // new user
       { id: 'user-5', name: '박사랑', age: 19 },
     ],
-  });
+  };
 
-  const handleChangeTheme = () => {
-    setState(({ isShowChild }) => ({
+  render() {
+    const { isShowChild, containerStyle, color, background, theme, members } =
+      this.state;
+
+    return (
+      <div
+        id="stateful-component"
+        style={{
+          color,
+          background,
+          ...containerStyle,
+        }}
+      >
+        <InteractHeadline
+          theme={theme}
+          onChangeTheme={this.handleChangeTheme}
+          onToggleChild={this.handleToggleChild}
+        />
+
+        <Stateless />
+        <AnotherStateless />
+
+        {isShowChild && (
+          <StatefulComponent.Child numbers={[20, 3034, '22']} users={members} />
+        )}
+      </div>
+    );
+  }
+
+  handleToggleChild = () => {
+    this.setState(({ isShowChild }) => ({
       isShowChild: !isShowChild,
     }));
   };
 
-  const handleToggleChild = () => {
-    setState(({ theme, color, background }) => ({
+  handleChangeTheme = () => {
+    this.setState(({ theme, color, background }) => ({
       color: color.includes('000') ? '#fff' : '#000',
       background: background.includes('000') ? '#fff' : '#000',
       theme: theme === 'light' ? 'dark' : 'light',
     }));
   };
-
-  return (
-    <div
-      id="stateful-component"
-      style={{
-        color: state.color,
-        background: state.background,
-        ...state.containerStyle,
-      }}
-    >
-      <InteractHeadline
-        theme={state.theme}
-        onChangeTheme={handleChangeTheme}
-        onToggleChild={handleToggleChild}
-      />
-
-      {state.isShowChild && (
-        <StatefulComponent.Child
-          numbers={[20, 3034, '22']}
-          users={state.members}
-        />
-      )}
-    </div>
-  );
 }
-
-StatefulComponent.defaultProps = {
-  name: 'stateful',
-};
-
-StatefulComponent.propTypes = {
-  name: string,
-};
 
 StatefulComponent.Child = class extends Component {
   clearId = null;
@@ -107,9 +114,6 @@ StatefulComponent.Child = class extends Component {
             <li>사용자가 없습니다.</li>
           )}
         </ul>
-
-        {/* <Demo.Stateless /> */}
-        {/* <Demo.AnotherStateless /> */}
       </>
     );
   }

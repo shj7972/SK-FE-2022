@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import JsxInAction from 'pages/JsxInAction';
 import StatelessComponent from 'pages/Stateless';
-import StatefulComponent from 'pages/Stateful';
+import StatefulComponent from 'pages/Stateful.class';
 import RandomCountUp from 'pages/RandomCountUp/RandomCountUp';
 
 function App() {
