@@ -1,9 +1,14 @@
 import { Component } from 'react';
-import { InteractHeadline } from 'components';
+import { InteractHeadline, A11yHidden } from 'components';
+import { arrayOf, oneOfType, number, string } from 'prop-types';
+import { UserType } from 'types';
 
 class StatefulComponent extends Component {
   static defaultProps = {
     name: 'stateful',
+  };
+  static propTypes = {
+    name: string,
   };
 
   state = {
@@ -15,10 +20,18 @@ class StatefulComponent extends Component {
     containerStyle: {
       padding: 40,
     },
+    members: [
+      { id: 'user-1', name: '해오랑', age: 23 },
+      { id: 'user-2', name: '김이박', age: 45 },
+      { id: 'user-3', name: '박현식', age: 39 },
+      { id: 'user-4', name: '최연지', age: 28 },
+      // new user
+      { id: 'user-5', name: '박사랑', age: 19, gender: 'female' },
+    ],
   };
 
   render() {
-    const { isShowChild, containerStyle, color, background, theme } =
+    const { isShowChild, containerStyle, color, background, theme, members } =
       this.state;
 
     return (
@@ -36,7 +49,9 @@ class StatefulComponent extends Component {
           onToggleChild={this.handleToggleChild}
         />
 
-        {isShowChild && <StatefulComponent.Child />}
+        {isShowChild && (
+          <StatefulComponent.Child numbers={[20, 3034, '22']} users={members} />
+        )}
       </div>
     );
   }
@@ -60,20 +75,47 @@ StatefulComponent.Child = class extends Component {
   clearId = null;
 
   static displayName = 'StatefulChild';
+  static propTypes = {
+    numbers: arrayOf(oneOfType([number, string])),
+    users: arrayOf(UserType),
+  };
 
   render() {
-    return <div>Child</div>;
+    const { numbers, users } = this.props;
+    return (
+      <>
+        <A11yHidden as="h3">숫자 목록</A11yHidden>
+        <ul>
+          {numbers && numbers.length > 0 ? (
+            numbers.map((number, index) => <li key={index}>{number}</li>)
+          ) : (
+            <li>출력할 숫자가 없습니다.</li>
+          )}
+        </ul>
+        <A11yHidden as="h3">사용자 목록</A11yHidden>
+        <ul>
+          {users && users.length > 0 ? (
+            users.map(({ id, name, age }, index) => (
+              <li key={id}>
+                <span className="user-name">{name}</span> |{' '}
+                <span className="user-age">{age}</span>
+              </li>
+            ))
+          ) : (
+            <li>사용자가 없습니다.</li>
+          )}
+        </ul>
+      </>
+    );
   }
 
   /* -------------------------------------------------------------------------- */
 
   componentDidMount() {
-    console.log('event subsription');
-    this.clearId = setInterval(() => console.log('this is child'), 1000);
+    // this.clearId = setInterval(() => console.log('this is child'), 1000);
   }
   componentWillUnmount() {
-    console.log('event unsubsription');
-    clearInterval(this.clearId);
+    // clearInterval(this.clearId);
   }
 };
 

@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
+
 import styles from './Button.module.scss';
-import { string } from 'utils/PropTypes';
+import { node, element, string, oneOf, oneOfType } from 'prop-types';
+import { nullType } from 'types';
 
 export const Button = ({ type, children, ...restProps }) => (
   <button type={type} className={styles.container} {...restProps}>
@@ -12,6 +15,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  type: string,
-  children: string,
+  type: oneOf(['submit', 'reset', 'button']),
+  children: oneOfType([element, string, nullType]).isRequired,
+  // children: node.isRequired,
 };
