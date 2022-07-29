@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { InteractHeadline, A11yHidden } from 'components';
-import { arrayOf, oneOfType, number, string, exact } from 'prop-types';
+import { arrayOf, oneOfType, number, string } from 'prop-types';
+import { UserType } from 'types';
 
 class StatefulComponent extends Component {
   static defaultProps = {
@@ -69,12 +70,6 @@ class StatefulComponent extends Component {
     }));
   };
 }
-
-const UserType = exact({
-  id: string.isRequired,
-  name: string.isRequired,
-  age: number.isRequired,
-});
 
 StatefulComponent.Child = class extends Component {
   clearId = null;
