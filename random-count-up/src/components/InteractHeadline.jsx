@@ -18,11 +18,12 @@ export class InteractHeadline extends Component {
       <>
         <h2>{headline}</h2>
         <Button
-          type={10293}
           lang="en"
           data-theme={this.props.theme}
           onClick={() => console.log('clicked button')}
-        ></Button>
+        >
+          Save
+        </Button>
         <InteractHeadline.Button
           theme={this.props.theme}
           onClick={this.handleClick}
