@@ -1,0 +1,27 @@
+$black: #000;
+$white: #fff;
+$base-spacing: 4px !default;
+$base-rem-size: 16 !default;
+
+@function remove-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+@function rem($px, $base: $base-rem-size) {
+  @return (remove-unit($px / $base)) * 1rem;
+}
+
+@function getSpacing($ratio, $base: $base-spacing) {
+  @return $base * $ratio;
+}
+
+.container {
+  padding: rem(getSpacing(2)) rem(getSpacing(4));
+  margin-bottom: rem(getSpacing(3));
+
+  &[data-theme='dark'] {
+    background: $black;
+    color: $white;
+    border: 1px solid currentColor;
+  }
+}
