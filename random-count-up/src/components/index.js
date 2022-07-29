@@ -8,4 +8,4 @@ export * from './Button/Button';
 export * from './Footer/Footer';
 export * from './Banner/Banner';
 export * from './Layout/Base';
-export { default as Demo } from './demo';
+export * from './demo';
