@@ -1,13 +1,22 @@
 import { useState, Component } from 'react';
-import { InteractHeadline, A11yHidden, Demo } from 'components';
+import { InteractHeadline, A11yHidden } from 'components';
 import { arrayOf, oneOfType, number, string } from 'prop-types';
 import { UserType } from 'types';
+import { fibonacci } from 'utils';
 
 function StatefulComponent() {
   // const { isShowChild, containerStyle, color, background, theme, members } = this.state;
 
   // 함수 컴포넌트가 상태를 관리하는 방법
   // useState는 단 하나의 상태만 관리하는 것이 좋다.
+  // [state, updateFunction] = useState(initialValue)
+
+  // lazy Initialization
+  // const [state, updateFunction] = useState(() => )
+  // const [fibo] = useState(() => fibonacci(30));
+  const [count, setCount] = useState(10);
+  const [step] = useState(10);
+
   const [isShowChild, setIsShowChild] = useState(true);
   const [theme, setTheme] = useState('dark');
   const [background, setBackground] = useState('#000');
@@ -30,6 +39,8 @@ function StatefulComponent() {
     setIsShowChild(!isShowChild);
   };
 
+  const calcFibo = () => fibonacci(count);
+
   return (
     <div
       id="stateful-component"
@@ -39,6 +50,19 @@ function StatefulComponent() {
         padding: 40,
       }}
     >
+      <h2>Fibonacci</h2>
+      <div style={{ display: 'flex', gap: 10 }}>
+        <output>
+          Count: <b>{count}</b>
+        </output>
+        <output>
+          Fibonacci: <b>{calcFibo()}</b>
+        </output>
+      </div>
+      <button onClick={() => setCount(count + step)}>
+        Calcuration Fibonacci
+      </button>
+
       <InteractHeadline
         theme={theme}
         onChangeTheme={handleChangeTheme}
