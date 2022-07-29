@@ -30,6 +30,11 @@
       "react-app/jest"
     ]
   },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-syntax-top-level-await"
+    ]
+  },
   "browserslist": {
     "production": [
       ">1% in KR",

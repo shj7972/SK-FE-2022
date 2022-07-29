@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
   try {
     const { reportWebVitals } = await import('./reportWebVitals');
     reportWebVitals(console.log);
-  } catch (error) {
+  } catch (error /* { name, message, stack } */) {
     console.error(error.message);
   }
 }
