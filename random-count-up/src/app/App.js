@@ -14,14 +14,8 @@ function App() {
           <Route path="/" element={<div children="this is home page" />} />
           <Route path="/jsx-in-action" element={<JsxInAction />} />
           <Route path="/random-count-up" element={<RandomCountUp />} />
-          <Route
-            path="/stateless-function-component"
-            element={<StatelessComponent />}
-          />
-          <Route
-            path="/stateful-class-component"
-            element={<StatefulComponent name="preact" />}
-          />
+          <Route path="/stateless" element={<StatelessComponent />} />
+          <Route path="/stateful" element={<StatefulComponent />} />
         </Routes>
       </Router>
     </div>
